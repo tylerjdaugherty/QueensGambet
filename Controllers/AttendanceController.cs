@@ -84,6 +84,7 @@ namespace QueensGambit.Controllers
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Get([FromRoute] int id)
+
         {
 
             if (!ModelState.IsValid)
@@ -91,14 +92,13 @@ namespace QueensGambit.Controllers
                 return BadRequest(ModelState);
             }
 
-            var person = _context.attendance.Where(ci => ci.student_id == id).ToArray();
-
-            if (person == null)
+             var userAttendance = _context.attendance.Where(ci => ci.student_id == id).ToArray();
+            if (userAttendance == null)
             {
                 return NotFound();
             }
 
-            return Ok(person);
+            return Ok(userAttendance);
         }
 
 
